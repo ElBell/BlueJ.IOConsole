@@ -1,4 +1,4 @@
- 
+
 
 /**
  * @author leon on 03/02/2019.
@@ -9,19 +9,19 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class Console {
+public class IOConsole {
     private final Scanner scanner;
     private final PrintStream out;
 
-    public Console() {
+    public IOConsole() {
         this(System.in, System.out);
     }
 
-    public Console(InputStream inputStream, OutputStream outputStream) {
+    public IOConsole(InputStream inputStream, OutputStream outputStream) {
         this(new Scanner(inputStream), new PrintStream(outputStream));
     }
 
-    public Console(Scanner scanner, PrintStream printStream) {
+    public IOConsole(Scanner scanner, PrintStream printStream) {
         this.scanner = scanner;
         this.out = printStream;
     }
@@ -46,7 +46,9 @@ public class Console {
      * @return user's input as String
      */
     public String getStringInput(String prompt, Object... args) {
-        return scanner.nextLine();
+        println(prompt, args);
+        String userInput = scanner.nextLine();
+        return userInput;
     }
 
     /**
@@ -55,7 +57,7 @@ public class Console {
      * @return user's input as integer
      */
     public Integer getIntegerInput(String prompt, Object... args) {
-        return scanner.nextInt();
+        return getLongInput(prompt, args).intValue();
     }
 
     /**
@@ -64,7 +66,7 @@ public class Console {
      * @return user's input as double
      */
     public Double getDoubleInput(String prompt, Object... args) {
-        return scanner.nextDouble();
+        return getLongInput(prompt, args).doubleValue();
     }
 
     /**
@@ -73,8 +75,9 @@ public class Console {
      * @return user's input as float
      */
     public Float getFloatInput(String prompt, Object... args) {
-        return scanner.nextFloat();
-    }
+           return scanner.nextFloat();
+           //return getLongInput(prompt, args).floatValue();
+    } 
 
     /**
      * @param prompt : text to display to user
@@ -82,55 +85,7 @@ public class Console {
      * @return user's input as long
      */
     public Long getLongInput(String prompt, Object... args) {
-        return scanner.nextLong();
-    }
-}
-
-    public void println(String val, Object... args) {
-    }
-
-    /**
-     * @param prompt : text to display to user
-     * @param args   : optional arguments to send for string formatting
-     * @return user's input as String
-     */
-    public String getStringInput(String prompt, Object... args) {
-        return null;
-    }
-
-    /**
-     * @param prompt : text to display to user
-     * @param args   : optional arguments to send for string formatting
-     * @return user's input as integer
-     */
-    public Integer getIntegerInput(String prompt, Object... args) {
-        return null;
-    }
-
-    /**
-     * @param prompt : text to display to user
-     * @param args   : optional arguments to send for string formatting
-     * @return user's input as double
-     */
-    public Double getDoubleInput(String prompt, Object... args) {
-        return null;
-    }
-
-    /**
-     * @param prompt : text to display to user
-     * @param args   : optional arguments to send for string formatting
-     * @return user's input as float
-     */
-    public Float getFloatInput(String prompt, Object... args) {
-        return null;
-    }
-
-    /**
-     * @param prompt : text to display to user
-     * @param args   : optional arguments to send for string formatting
-     * @return user's input as long
-     */
-    public Long getLongInput(String prompt, Object... args) {
-        return null;
+            Long userNumber = scanner.nextLong();
+            return userNumber;
     }
 }
